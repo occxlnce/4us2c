@@ -40,7 +40,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:var(--brand);text-decoration:none}
@@ -54,7 +54,7 @@ a:hover{color:var(--brand-l)}
 .cursor-ring{width:30px;height:30px;border:1.5px solid rgba(139,16,46,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease}
 
 /* NAV */
-nav{position:fixed;inset:0 0 auto 0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
+nav{position:fixed;inset:0 0 auto 0;z-index:10002;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
 nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16,46,0.12)}
 .nav-logo{display:flex;align-items:center;gap:12px}
 .nav-logo-img{height:44px;width:auto;object-fit:contain}
@@ -68,15 +68,19 @@ nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16
 .nav-cta{background:var(--brand)!important;border:none!important;color:#fff!important;padding:9px 20px;font-size:10px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s!important;border-radius:2px}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:var(--brand-d)!important;color:#fff!important;transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10001}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;position:relative;z-index:10003}
 .hamburger span{width:24px;height:2px;background:var(--navy);transition:all .3s;display:block}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-#mobileNav{display:none;position:fixed;inset:0;z-index:10000;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+#mobileNav{display:none;position:fixed;inset:0;z-index:10001;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
 #mobileNav.open{display:flex}
 #mobileNav a{font-family:'Bebas Neue';font-size:44px;letter-spacing:4px;color:var(--navy);transition:color .2s}
 #mobileNav a:hover{color:var(--brand)}
+
+@media (hover:none){
+  .cursor-dot,.cursor-ring{display:none}
+}
 
 /* PAGE HERO (inner pages) */
 .page-hero{min-height:44vh;display:flex;align-items:flex-end;padding:120px 60px 70px;position:relative;overflow:hidden;background:var(--navy)}
@@ -358,6 +362,19 @@ footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60p
 .mkt-card h4{font-family:'Barlow Condensed';font-size:17px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:8px}
 .mkt-card p{font-size:13px;color:var(--muted);line-height:1.7}
 
+.gallery-section{background:var(--bg-2);padding:90px 60px;border-top:1px solid var(--border)}
+.gallery-head{max-width:1280px;margin:0 auto}
+.gallery-head .section-sub{max-width:720px}
+.gallery-marquee{max-width:1280px;margin:44px auto 0;overflow:hidden;border:1px solid var(--border);background:#fff;padding:18px}
+.gallery-track{display:flex;width:max-content;gap:18px;animation:galleryScroll 42s linear infinite;will-change:transform}
+.gallery-set{display:flex;gap:18px}
+.gallery-item{width:320px;aspect-ratio:16/10;overflow:hidden;border-radius:6px;flex:0 0 auto;border:1px solid rgba(139,16,46,0.12);background:var(--bg)}
+.gallery-item img{width:100%;height:100%;object-fit:cover;display:block;transform:scale(1.02)}
+@keyframes galleryScroll{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+@media (prefers-reduced-motion: reduce){.gallery-track{animation:none;transform:none}}
+@media(max-width:1100px){.gallery-section{padding:80px 28px}.gallery-item{width:280px}}
+@media(max-width:680px){.gallery-section{padding:70px 20px}.gallery-item{width:240px}.gallery-marquee{padding:14px}.gallery-track{gap:14px}.gallery-set{gap:14px}}
+
 /* Fade in hero */
 .hero-content>*{opacity:0;animation:fadeUp .7s forwards}
 .hero-content>*:nth-child(1){animation-delay:.1s}
@@ -534,6 +551,38 @@ footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60p
   </div>
 </div>
 
+<section class="gallery-section">
+  <div class="gallery-head">
+    <div class="section-label aos"><div class="section-label-line"></div><span>Gallery</span></div>
+    <h2 class="section-title aos">On-Duty Moments</h2>
+    <p class="section-sub aos" style="margin-top:8px">A glimpse into our teams, vehicles, and on-site deployments across different environments.</p>
+  </div>
+  <div class="gallery-marquee" aria-label="4 US 2 C Security photo gallery">
+    <div class="gallery-track">
+      <div class="gallery-set" aria-hidden="true">
+        <div class="gallery-item"><img src="img/securitycar1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securitycar2.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityguard1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam2.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam3.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam4.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam5.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+      </div>
+      <div class="gallery-set">
+        <div class="gallery-item"><img src="img/securitycar1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securitycar2.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityguard1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam1.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam2.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam3.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam4.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+        <div class="gallery-item"><img src="img/securityteam5.png" alt="4 US 2 C Security gallery image" loading="lazy"/></div>
+      </div>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-top">
@@ -599,14 +648,34 @@ document.addEventListener('DOMContentLoaded', () => {
     ham.addEventListener('click', () => {
       ham.classList.toggle('open');
       mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+      const isOpen = mobileNav.classList.contains('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.body.classList.toggle('nav-open', isOpen);
     });
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         ham.classList.remove('open');
         mobileNav.classList.remove('open');
         document.body.style.overflow = '';
+        document.body.classList.remove('nav-open');
       });
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target !== mobileNav) return;
+      ham.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!mobileNav.classList.contains('open')) return;
+      ham.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
     });
   }
 

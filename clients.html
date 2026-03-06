@@ -40,7 +40,7 @@
 }
 
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;overflow-x:hidden}
 body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
 img{max-width:100%;display:block}
 a{color:var(--brand);text-decoration:none}
@@ -54,7 +54,7 @@ a:hover{color:var(--brand-l)}
 .cursor-ring{width:30px;height:30px;border:1.5px solid rgba(139,16,46,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease}
 
 /* NAV */
-nav{position:fixed;inset:0 0 auto 0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
+nav{position:fixed;inset:0 0 auto 0;z-index:10002;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
 nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16,46,0.12)}
 .nav-logo{display:flex;align-items:center;gap:12px}
 .nav-logo-img{height:44px;width:auto;object-fit:contain}
@@ -68,15 +68,19 @@ nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16
 .nav-cta{background:var(--brand)!important;border:none!important;color:#fff!important;padding:9px 20px;font-size:10px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s!important;border-radius:2px}
 .nav-cta::after{display:none!important}
 .nav-cta:hover{background:var(--brand-d)!important;color:#fff!important;transform:translateY(-1px)}
-.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10001}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;position:relative;z-index:10003}
 .hamburger span{width:24px;height:2px;background:var(--navy);transition:all .3s;display:block}
 .hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
 .hamburger.open span:nth-child(2){opacity:0}
 .hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
-#mobileNav{display:none;position:fixed;inset:0;z-index:10000;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+#mobileNav{display:none;position:fixed;inset:0;z-index:10001;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
 #mobileNav.open{display:flex}
 #mobileNav a{font-family:'Bebas Neue';font-size:44px;letter-spacing:4px;color:var(--navy);transition:color .2s}
 #mobileNav a:hover{color:var(--brand)}
+
+@media (hover:none){
+  .cursor-dot,.cursor-ring{display:none}
+}
 
 /* PAGE HERO (inner pages) */
 .page-hero{min-height:44vh;display:flex;align-items:flex-end;padding:120px 60px 70px;position:relative;overflow:hidden;background:var(--navy)}
@@ -458,14 +462,34 @@ document.addEventListener('DOMContentLoaded', () => {
     ham.addEventListener('click', () => {
       ham.classList.toggle('open');
       mobileNav.classList.toggle('open');
-      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+      const isOpen = mobileNav.classList.contains('open');
+      document.body.style.overflow = isOpen ? 'hidden' : '';
+      document.body.classList.toggle('nav-open', isOpen);
     });
     mobileNav.querySelectorAll('a').forEach(a => {
       a.addEventListener('click', () => {
         ham.classList.remove('open');
         mobileNav.classList.remove('open');
         document.body.style.overflow = '';
+        document.body.classList.remove('nav-open');
       });
+    });
+
+    mobileNav.addEventListener('click', (e) => {
+      if (e.target !== mobileNav) return;
+      ham.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key !== 'Escape') return;
+      if (!mobileNav.classList.contains('open')) return;
+      ham.classList.remove('open');
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+      document.body.classList.remove('nav-open');
     });
   }
 
