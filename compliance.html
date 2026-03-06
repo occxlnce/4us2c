@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Compliance — 4 US 2 C Security</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png"/>
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+   4 US 2 C SECURITY — Shared Stylesheet (Light Theme)
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap');
+
+:root {
+  --brand:    #8b102e;
+  --brand-d:  #6a0c23;
+  --brand-l:  #b01a3c;
+  --brand-xl: #d42248;
+  --navy:     #183245;
+  --navy-l:   #1f4060;
+  --bg:       #f7f3f3;
+  --bg-2:     #efe9e9;
+  --bg-3:     #f0ebeb;
+  --white:    #ffffff;
+  --text:     #444444;
+  --muted:    #777777;
+  --border:   rgba(139,16,46,0.12);
+  --border-m: rgba(139,16,46,0.30);
+  /* legacy aliases so page-specific CSS still works */
+  --maroon:   #8b102e;
+  --maroon-d: #6a0c23;
+  --maroon-l: #b01a3c;
+  --maroon-xl:#d42248;
+  --azure:    #183245;
+  --azure-d:  #0f2030;
+  --azure-l:  #1f4060;
+  --azure-xl: #2a5580;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-decoration:none}
+a:hover{color:var(--brand-l)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--brand);border-radius:2px}
+
+/* CURSOR */
+.cursor-dot{width:6px;height:6px;background:var(--brand);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{width:30px;height:30px;border:1.5px solid rgba(139,16,46,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto 0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
+nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16,46,0.12)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-img{height:44px;width:auto;object-fit:contain}
+.nav-wordmark{font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;color:var(--navy)}
+.nav-wordmark span{color:var(--brand)}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--brand);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--brand)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--brand)!important;border:none!important;color:#fff!important;padding:9px 20px;font-size:10px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s!important;border-radius:2px}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--brand-d)!important;color:#fff!important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10001}
+.hamburger span{width:24px;height:2px;background:var(--navy);transition:all .3s;display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+#mobileNav{display:none;position:fixed;inset:0;z-index:10000;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+#mobileNav.open{display:flex}
+#mobileNav a{font-family:'Bebas Neue';font-size:44px;letter-spacing:4px;color:var(--navy);transition:color .2s}
+#mobileNav a:hover{color:var(--brand)}
+
+/* PAGE HERO (inner pages) */
+.page-hero{min-height:44vh;display:flex;align-items:flex-end;padding:120px 60px 70px;position:relative;overflow:hidden;background:var(--navy)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:80px 80px}
+.page-hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 20% 50%,rgba(24,50,69,0.4) 30%,var(--navy) 100%)}
+.page-hero-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,transparent,var(--brand),transparent)}
+.page-hero-content{position:relative}
+.page-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.page-eyebrow-line{width:40px;height:1px;background:var(--brand)}
+.page-eyebrow span{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--brand-l)}
+.page-title{font-family:'Bebas Neue';font-size:clamp(52px,6vw,96px);letter-spacing:2px;line-height:.95;color:#fff}
+.page-title .outline{-webkit-text-stroke:0;color:inherit}
+.page-sub{font-family:'Cormorant Garamond';font-size:20px;font-weight:300;font-style:italic;color:rgba(255,255,255,0.55);margin-top:18px;max-width:520px;line-height:1.6}
+.breadcrumb{display:flex;align-items:center;gap:10px;position:absolute;bottom:28px;right:60px}
+.breadcrumb a,.breadcrumb span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.breadcrumb a{color:rgba(255,255,255,0.4);transition:color .2s}
+.breadcrumb a:hover{color:#fff}
+.breadcrumb .sep{color:var(--brand);font-size:8px}
+.breadcrumb span{color:rgba(255,255,255,0.6)}
+
+/* SECTION BASE */
+section{padding:100px 60px}
+.container{max-width:1280px;margin:0 auto}
+.section-label{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.section-label-line{width:36px;height:1px;background:var(--brand)}
+.section-label span{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--brand)}
+.section-title{font-family:'Bebas Neue';font-size:clamp(36px,4.5vw,64px);letter-spacing:2px;line-height:1;margin-bottom:12px;color:var(--navy)}
+.section-sub{font-family:'Cormorant Garamond';font-size:18px;font-weight:300;font-style:italic;color:var(--muted);line-height:1.6;max-width:500px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow';font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;position:relative;overflow:hidden;border-radius:2px}
+.btn-primary{background:var(--brand);border:1px solid var(--brand-d);color:#fff;padding:15px 34px}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.1);transform:translateX(-100%);transition:transform .3s}
+.btn-primary:hover::before{transform:translateX(0)}
+.btn-primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,16,46,0.3)}
+.btn-outline{border:2px solid var(--brand);color:var(--brand);padding:15px 34px;background:transparent}
+.btn-outline:hover{background:var(--brand);color:#fff;transform:translateY(-2px)}
+.btn svg{flex-shrink:0}
+
+/* AOS */
+.aos{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.aos-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.aos-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.aos.visible,.aos-left.visible,.aos-right.visible{opacity:1;transform:none}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);padding:40px 32px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s;box-shadow:0 2px 12px rgba(139,16,46,0.06)}
+.card:hover{border-color:var(--brand);box-shadow:0 8px 32px rgba(139,16,46,0.12);transform:translateY(-4px)}
+
+/* TAGS */
+.tag{display:inline-block;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px}
+.tag-maroon{background:rgba(139,16,46,0.1);color:var(--brand);border:1px solid rgba(139,16,46,0.25)}
+.tag-azure{background:rgba(24,50,69,0.1);color:var(--navy);border:1px solid rgba(24,50,69,0.25)}
+.tag-white{background:rgba(0,0,0,0.05);color:var(--muted);border:1px solid rgba(0,0,0,0.1)}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.stat-cell{background:#fff;padding:40px 32px;border-bottom:3px solid transparent;transition:border-color .3s,box-shadow .3s}
+.stat-cell:hover{border-bottom-color:var(--brand);box-shadow:0 4px 20px rgba(139,16,46,0.08)}
+.stat-num{font-family:'Bebas Neue';font-size:56px;color:var(--brand);line-height:1}
+.stat-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;background:var(--bg-2)}
+.marquee-inner{display:flex;gap:56px;align-items:center;animation:marqueeScroll 24s linear infinite;width:max-content}
+@keyframes marqueeScroll{to{transform:translateX(-50%)}}
+.marquee-item{font-family:'Barlow Condensed';font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(139,16,46,0.35);white-space:nowrap;transition:color .2s}
+.marquee-item:hover{color:var(--brand)}
+.marquee-sep{color:var(--brand);font-size:8px;flex-shrink:0}
+
+/* SHIFT DIAGRAM */
+.shift-diagram{display:flex;align-items:center;gap:0;margin:24px 0 28px}
+.shift-box{padding:14px 18px;text-align:center;min-width:88px;flex-shrink:0}
+.shift-box.in{background:var(--navy);border:1px solid var(--navy-l)}
+.shift-box.out{background:var(--brand-d);border:1px solid var(--brand)}
+.shift-box.night-in{background:rgba(24,50,69,0.8);border:1px solid var(--navy-l)}
+.shift-box-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px}
+.shift-box-time{font-family:'Bebas Neue';font-size:22px;color:#fff;letter-spacing:1px}
+.shift-arrow{flex:1;height:1px;background:var(--border);position:relative;display:flex;align-items:center;justify-content:center}
+.shift-arrow::after{content:'';position:absolute;right:0;width:0;height:0;border-left:8px solid var(--brand);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.shift-arrow-lbl{position:absolute;top:-17px;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.shift-cycle{flex:1;display:flex;align-items:center;justify-content:center}
+.shift-cycle-ring{width:64px;height:64px;border:2px solid var(--border);border-top-color:var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 6s linear infinite;position:relative}
+.shift-cycle-ring::after{content:'';position:absolute;width:46px;height:46px;border:1px solid var(--border);border-radius:50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shift-cycle-text{position:absolute;font-family:'Bebas Neue';font-size:12px;letter-spacing:1px;color:var(--brand);text-align:center;line-height:1.2}
+
+/* ORG TREE */
+.org-tree{display:flex;flex-direction:column;align-items:center}
+.org-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.org-connector-v{width:1px;height:30px;background:linear-gradient(180deg,var(--brand),rgba(139,16,46,0.2));margin:0 auto}
+.org-node{padding:16px 22px;text-align:center;min-width:150px;transition:transform .2s;cursor:default;border-radius:2px}
+.org-node:hover{transform:translateY(-2px)}
+.org-node-role{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.org-node-name{font-size:13px;font-weight:600}
+.org-node.ceo{background:var(--brand);border:1px solid var(--brand-d);min-width:200px}
+.org-node.ceo .org-node-name{color:#fff}
+.org-node.ceo .org-node-role{color:rgba(255,255,255,0.65)}
+.org-node.gm{background:var(--navy);border:1px solid var(--navy-l)}
+.org-node.gm .org-node-name{color:#fff}
+.org-node.gm .org-node-role{color:rgba(255,255,255,0.55)}
+.org-node.mid{background:#fff;border:1px solid var(--border);box-shadow:0 2px 8px rgba(139,16,46,0.06)}
+.org-node.mid .org-node-name{color:var(--navy)}
+.org-node.mid .org-node-role{color:var(--brand)}
+.org-node.bot{background:var(--bg);border:1px solid var(--border)}
+.org-node.bot .org-node-name{color:var(--navy)}
+.org-node.bot .org-node-role{color:var(--muted)}
+
+/* COMPLIANCE */
+.comp-item{display:flex;align-items:center;gap:20px;padding:18px 22px;border:1px solid var(--border);background:#fff;transition:all .25s;margin-bottom:10px;box-shadow:0 1px 4px rgba(139,16,46,0.04)}
+.comp-item:hover{border-color:var(--brand);background:rgba(139,16,46,0.03);transform:translateX(4px);box-shadow:0 4px 16px rgba(139,16,46,0.08)}
+.comp-code{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;color:var(--brand);flex-shrink:0;width:90px}
+.comp-item p{font-size:13px;color:var(--text);line-height:1.5}
+.comp-item:hover .comp-code{color:var(--brand)}
+.comp-item:hover p{color:var(--brand)}
+.comp-item:hover p strong{color:var(--brand)}
+
+/* LEGAL GRID */
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.legal-cell{background:#fff;padding:18px 22px;transition:background .2s}
+.legal-cell:hover{background:rgba(139,16,46,0.03)}
+.legal-cell-key{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.legal-cell-val{font-size:14px;color:var(--navy);font-weight:600}
+
+/* FORMS */
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:#fff;border:1px solid #ddd;color:var(--text);font-family:'Barlow';font-size:14px;padding:13px 16px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;border-radius:2px}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(139,16,46,0.08)}
+.form-group textarea{min-height:110px;resize:vertical}
+.form-group select option{background:#fff;color:var(--text)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* TABS */
+.tabs-bar{display:flex;border-bottom:2px solid var(--border);margin-bottom:48px;gap:0}
+[data-tab]{padding:14px 26px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+[data-tab]:hover{color:var(--brand)}
+[data-tab].active{color:var(--brand);border-bottom-color:var(--brand)}
+[data-panel]{display:none}
+[data-panel].active{display:block}
+
+/* CLIENT TABLE */
+.ct-wrap{border:1px solid var(--border);overflow:hidden;border-radius:4px;box-shadow:0 2px 12px rgba(139,16,46,0.06)}
+.ct-head{display:grid;grid-template-columns:2.5fr 2fr 1.5fr;background:var(--brand);border-bottom:1px solid var(--brand-d)}
+.ct-head span{padding:13px 22px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff}
+.ct-row{display:grid;grid-template-columns:2.5fr 2fr 1.5fr;border-bottom:1px solid var(--border);transition:background .2s}
+.ct-row:last-child{border-bottom:none}
+.ct-row:hover{background:rgba(139,16,46,0.04)}
+.ct-row:nth-child(even){background:rgba(0,0,0,0.02)}
+.ct-cell{padding:17px 22px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:12px}
+.ct-cell strong{color:var(--navy);font-weight:600}
+.ct-dot{width:5px;height:5px;border-radius:50%;background:var(--brand);flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60px 32px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:32px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:16px;max-width:280px}
+.footer-logo-img{height:48px;width:auto;object-fit:contain;margin-bottom:4px}
+.footer-col h5{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s,padding-left .2s;display:block}
+.footer-col ul li a:hover{color:#fff;padding-left:4px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.3)}
+.footer-regs{display:flex;gap:24px;flex-wrap:wrap}
+.footer-regs span{font-size:10px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.3)}
+.footer-regs span strong{color:rgba(255,255,255,0.6)}
+
+/* ACCORDION */
+.accordion-item{border-bottom:1px solid var(--border)}
+.accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:pointer;background:none;border:none;color:var(--navy);font-family:'Barlow';font-size:15px;font-weight:600;text-align:left;transition:color .2s}
+.accordion-trigger:hover{color:var(--brand)}
+.accordion-icon{width:20px;height:20px;position:relative;flex-shrink:0}
+.accordion-icon::before,.accordion-icon::after{content:'';position:absolute;background:currentColor;transition:transform .3s,opacity .3s}
+.accordion-icon::before{width:14px;height:1px;top:50%;left:3px}
+.accordion-icon::after{width:1px;height:14px;top:3px;left:50%;transform:translateX(-50%)}
+.accordion-item.open .accordion-icon::after{transform:translateX(-50%) rotate(90deg);opacity:0}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-item.open .accordion-body{max-height:600px}
+.accordion-body-inner{padding:0 0 24px;font-size:14px;line-height:1.8;color:var(--text)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  nav{padding:0 28px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:72px 28px}
+  .page-hero{padding:110px 28px 60px}
+  .breadcrumb{right:28px;bottom:16px}
+  footer{padding:48px 28px 24px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .ct-head,.ct-row{grid-template-columns:1.8fr 2fr}
+  .ct-head span:last-child,.ct-cell:last-child{display:none}
+}
+@media(max-width:680px){
+  section{padding:56px 20px}
+  .page-hero{padding:100px 20px 48px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .form-row{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr}
+  footer{padding:40px 20px 20px}
+}
+
+</style>
+<style>
+.comp-grid{display:grid;grid-template-columns:1fr 1fr;gap:72px;margin-top:64px;align-items:start}
+.comp-intro p{font-size:15px;line-height:1.9;color:var(--text);margin-bottom:20px}
+.legal-section{background:var(--bg-2)}
+.legal-grid-outer{display:grid;grid-template-columns:1fr 1fr;gap:48px;margin-top:60px;align-items:start}
+.entity-card{background:rgba(139,16,46,0.06);border:1px solid rgba(139,16,46,0.25);padding:40px}
+.entity-card h3{font-family:'Bebas Neue';font-size:36px;letter-spacing:2px;color:var(--navy);margin-bottom:4px}
+.entity-detail{font-size:12px;color:var(--muted);letter-spacing:1px;margin-bottom:28px}
+.active-badge{display:inline-flex;align-items:center;gap:8px;padding:8px 16px;background:rgba(74,222,128,.1);border:1px solid rgba(74,222,128,.3);margin-bottom:24px}
+.active-dot{width:8px;height:8px;border-radius:50%;background:#4ade80;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
+.active-badge span{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#4ade80}
+.owner-detail{margin-top:24px;padding-top:24px;border-top:1px solid rgba(255,255,255,.07)}
+.owner-detail h4{font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.owner-detail p{font-size:14px;color:var(--navy)}
+.faq-section{background:#fff}
+@media(max-width:1100px){.comp-grid,.legal-grid-outer{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="mobileNav"><a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a><a href="packages.html">Packages</a><a href="clients.html">Clients</a><a href="compliance.html">Compliance</a><a href="contact.html">Contact</a></div>
+<nav id="navbar"><a href="index.html" class="nav-logo">
+    <img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png" alt="4 US 2 C Security Logo" class="nav-logo-img"/>
+  </a><ul class="nav-links"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="services.html">Services</a></li><li><a href="packages.html">Packages</a></li><li><a href="clients.html">Clients</a></li><li><a href="compliance.html" class="active">Compliance</a></li><li><a href="contact.html" class="nav-cta">Get a Quote</a></li></ul><div class="hamburger" id="hamburger"><span></span><span></span><span></span></div></nav>
+
+<div class="page-hero">
+  <div class="page-hero-grid"></div><div class="page-hero-vignette"></div><div class="page-hero-accent"></div>
+  <div class="container page-hero-content">
+    <div class="page-eyebrow"><div class="page-eyebrow-line"></div><span>Regulatory Standing</span></div>
+    <h1 class="page-title">Compliance &amp;<br><span class="outline">Legal Entity</span></h1>
+    <p class="page-sub">Fully compliant with all South African security industry regulations, labour laws, and statutory requirements.</p>
+  </div>
+  <div class="breadcrumb"><a href="index.html">Home</a><span class="sep">◆</span><span>Compliance</span></div>
+</div>
+
+<!-- COMPLIANCE BODIES -->
+<section style="background:var(--bg)">
+  <div class="container">
+    <div class="comp-grid">
+      <div class="aos-left">
+        <div class="section-label"><div class="section-label-line"></div><span>Regulatory Bodies</span></div>
+        <h2 class="section-title">Our Compliance<br>Framework</h2>
+        <div class="comp-intro" style="margin-top:20px">
+          <p>4 US 2 C Security maintains full compliance with all applicable South African security industry regulations, labour laws, and statutory requirements. Our compliance framework ensures accountability, legality, and the highest professional standards at all times.</p>
+          <p>We are registered, certified, and in good standing with every relevant regulatory body in the South African private security sector.</p>
+        </div>
+      </div>
+      <div class="aos-right">
+        <div class="comp-item"><div class="comp-code">PSIRA</div><p><strong style="color:inherit">Private Security Industry Regulatory Authority</strong><br>Our core industry regulator — Reg No. 2595891</p></div>
+        <div class="comp-item"><div class="comp-code">COIDA</div><p><strong style="color:inherit">Compensation for Occupational Injuries and Diseases Act</strong><br>Protecting all employees against work-related injuries — Reg No. 990001124059</p></div>
+        <div class="comp-item"><div class="comp-code">UIF</div><p><strong style="color:inherit">Unemployment Insurance Fund</strong><br>Safeguarding our employees' livelihoods — Ref No. 2557447/2</p></div>
+        <div class="comp-item"><div class="comp-code">SARS</div><p><strong style="color:inherit">South African Revenue Service</strong><br>Fully tax-compliant and VAT-registered — VAT No. 4270301924</p></div>
+        <div class="comp-item"><div class="comp-code">BBBEE</div><p><strong style="color:inherit">Broad-Based Black Economic Empowerment</strong><br>Certified BBBEE contributor — committed to transformation</p></div>
+        <div class="comp-item"><div class="comp-code">NBCPSS</div><p><strong style="color:inherit">National Bargaining Council for the Private Security Sector</strong><br>Full compliance with sector wage and labour agreements</p></div>
+        <div class="comp-item"><div class="comp-code">ICASA</div><p><strong style="color:inherit">Independent Communications Authority of South Africa</strong><br>Licensed for radio communication equipment usage</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LEGAL ENTITY -->
+<section class="legal-section">
+  <div class="container">
+    <div class="section-label aos"><div class="section-label-line"></div><span>Legal Standing</span></div>
+    <h2 class="section-title aos">Legal Entity Details</h2>
+    <div class="legal-grid-outer">
+      <div class="aos-left">
+        <div class="entity-card">
+          <h3>4 US 2 C Security</h3>
+          <div class="entity-detail">(Pty) Ltd — Private Company</div>
+          <div class="active-badge"><div class="active-dot"></div><span>Active Company</span></div>
+          <div class="owner-detail"><h4>Owner / Director</h4><p>Nhlamulo Cyril Nkatingi</p></div>
+          <div class="owner-detail"><h4>Registered Office</h4><p>546 16th Road, Randjespark, Midrand, 1685<br>Constantia Business Park, Johannesburg, Gauteng</p></div>
+          <div class="owner-detail"><h4>Financial Year End</h4><p>28 February</p></div>
+          <div class="owner-detail"><h4>CSD Registration</h4><p>MAAA0758783</p></div>
+        </div>
+      </div>
+      <div class="aos-right">
+        <div class="legal-grid">
+          <div class="legal-cell"><div class="legal-cell-key">Company Reg. No.</div><div class="legal-cell-val">2016/004422/07</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">Registration Date</div><div class="legal-cell-val">08 January 2016</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">PSIRA Number</div><div class="legal-cell-val">2595891</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">Company Status</div><div class="legal-cell-val" style="color:#4ade80">Active ●</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">VAT Number</div><div class="legal-cell-val">4270301924</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">Income Tax No.</div><div class="legal-cell-val">9255795198</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">COIDA Reg. No.</div><div class="legal-cell-val">990001124059</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">UIF Reference No.</div><div class="legal-cell-val">2557447/2</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">CSD Number</div><div class="legal-cell-val">MAAA0758783</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">Enterprise Type</div><div class="legal-cell-val">Private</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">Financial Year End</div><div class="legal-cell-val">28 February</div></div>
+          <div class="legal-cell"><div class="legal-cell-key">BBBEE Status</div><div class="legal-cell-val">Compliant</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq-section">
+  <div class="container">
+    <div class="section-label aos"><div class="section-label-line"></div><span>Common Questions</span></div>
+    <h2 class="section-title aos">Compliance FAQs</h2>
+    <div style="max-width:760px;margin-top:48px" class="aos">
+      <div class="accordion-item">
+        <button class="accordion-trigger">What is PSIRA and why does it matter?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">PSIRA (Private Security Industry Regulatory Authority) is the government body that regulates all private security companies and individuals in South Africa. Being PSIRA-registered (No. 2595891) means 4 US 2 C Security meets all legal requirements to operate — our officers are trained, certified, and legally authorised to provide security services. Any security company without PSIRA registration is operating illegally.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Are your security officers properly trained and certified?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Yes. All 4 US 2 C Security officers hold valid PSIRA registration certificates at their respective grades (Grade E through Grade A). Armed officers additionally hold firearms competency certificates. CPO officers hold Close Protection Officer certification. All certifications are renewed regularly as required by PSIRA regulations.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Is 4 US 2 C Security BBBEE compliant?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Yes. 4 US 2 C Security is BBBEE-compliant and committed to the principles of Broad-Based Black Economic Empowerment. This is particularly relevant for government and public sector contracts, where BBBEE compliance is a mandatory requirement. Our BBBEE status is maintained and updated as required.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Do you cover workers under COIDA?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Yes. All employees are covered under the Compensation for Occupational Injuries and Diseases Act (COIDA) — Registration No. 990001124059. This means that in the event of a work-related injury or illness, employees are protected and compensated appropriately, and our clients are protected from liability.</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Can you tender for government contracts?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Yes. 4 US 2 C Security is registered on the Central Supplier Database (CSD) with registration number MAAA0758783, which is a prerequisite for all South African government procurement and tenders. We have previously successfully provided services to the Department of Public Works (Western Cape) and the Department of Employment and Labour (Western Cape).</div></div>
+      </div>
+      <div class="accordion-item">
+        <button class="accordion-trigger">Are you compliant with the NBCPSS wage regulations?<span class="accordion-icon"></span></button>
+        <div class="accordion-body"><div class="accordion-body-inner">Yes. We are fully compliant with the National Bargaining Council for the Private Security Sector (NBCPSS) — including all wage and minimum pay requirements stipulated for the private security industry. We also comply with all UIF contribution requirements (Ref No. 2557447/2).</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer><div class="container"><div class="footer-top"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px">
+          <img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png" alt="4 US 2 C Security" class="footer-logo-img"/>
+        </div><p>Protecting what matters most since 2016. South African security excellence across every environment.</p></div><div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Armed Guarding</a></li><li><a href="services.html">Armed Response</a></li><li><a href="services.html">Close Protection</a></li><li><a href="services.html">CCTV</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="packages.html">Packages</a></li><li><a href="clients.html">Clients</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="footer-col"><h5>Location</h5><ul><li><a href="#">Midrand, 1685, Gauteng</a></li><li><a href="#">PSIRA: 2595891</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 4 US 2 C Security (Pty) Ltd. All rights reserved.</p><div class="footer-regs"><span><strong>PSIRA</strong> 2595891</span><span><strong>VAT</strong> 4270301924</span><span><strong>BBBEE</strong> Compliant</span><span><strong>COIDA</strong> 990001124059</span></div></div></div></footer>
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+  4 US 2 C SECURITY — Shared JavaScript
+   ═══════════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Custom Cursor ───────────────────────────────────────── */
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if (dot && ring) {
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    const animC = () => {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animC);
+    };
+    animC();
+    document.querySelectorAll('a,button,[data-tab],.card,.svc-card,.sf-card,.mkt-card,.mkt-item,.ref-card,.pkg-card,.tac-card,.goal-card,.pillar,.vm-card,.comp-item,.legal-cell').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.6)');
+      el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
+    });
+  }
+
+  /* ── Navbar scroll ───────────────────────────────────────── */
+  const navbar = document.querySelector('nav');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+  }
+
+  /* ── Active nav link ─────────────────────────────────────── */
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (a.classList.contains('nav-cta')) return;
+    if (href === page || (page === '' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+
+  /* ── Hamburger / Mobile nav ──────────────────────────────── */
+  const ham = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  if (ham && mobileNav) {
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        ham.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── Scroll-triggered animations ────────────────────────── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.aos, .aos-left, .aos-right').forEach(el => {
+    const siblings = Array.from(el.parentElement.children).filter(c =>
+      c.classList.contains('aos') || c.classList.contains('aos-left') || c.classList.contains('aos-right')
+    );
+    const idx = siblings.indexOf(el);
+    if (!el.style.transitionDelay) {
+      el.style.transitionDelay = (idx * 0.07) + 's';
+    }
+    observer.observe(el);
+  });
+
+  /* ── Counter animation ───────────────────────────────────── */
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const cObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        let count = 0;
+        const step = Math.max(1, target / 50);
+        const timer = setInterval(() => {
+          count += step;
+          if (count >= target) { count = target; clearInterval(timer); }
+          el.textContent = Math.floor(count) + suffix;
+        }, 28);
+        cObs.unobserve(el);
+      }
+    }, { threshold: 0.5 });
+    cObs.observe(el);
+  });
+
+  /* ── Tab switcher ────────────────────────────────────────── */
+  document.querySelectorAll('[data-tabs]').forEach(container => {
+    const tabs = container.querySelectorAll('[data-tab]');
+    // Activate first by default
+    if (tabs.length > 0 && !container.querySelector('[data-tab].active')) {
+      tabs[0].classList.add('active');
+      const firstPanel = document.getElementById('panel-' + tabs[0].dataset.tab);
+      if (firstPanel) firstPanel.classList.add('active');
+    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const group = tab.dataset.group;
+        // Deactivate tabs in same group
+        container.querySelectorAll('[data-tab]').forEach(t => {
+          if (!group || t.dataset.group === group) t.classList.remove('active');
+        });
+        // Deactivate panels in same group
+        document.querySelectorAll('[data-panel]').forEach(p => {
+          if (!group || p.dataset.group === group) p.classList.remove('active');
+        });
+        tab.classList.add('active');
+        const panel = document.getElementById('panel-' + tab.dataset.tab);
+        if (panel) {
+          panel.classList.add('active');
+          // Re-animate AOS items in newly shown panel
+          panel.querySelectorAll('.aos, .aos-left, .aos-right').forEach((el, i) => {
+            el.classList.remove('visible');
+            el.style.transitionDelay = (i * 0.07) + 's';
+            setTimeout(() => el.classList.add('visible'), 20);
+          });
+        }
+      });
+    });
+  });
+
+  /* ── Accordion ───────────────────────────────────────────── */
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+});
+
+</script>
+</body></html>

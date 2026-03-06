@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>4 US 2 C Security — Protecting What Matters Most</title>
+<link rel="icon" type="image/png" href="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png"/>
+<link rel="apple-touch-icon" href="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"/>
+<style>
+/* ═══════════════════════════════════════════════════════════════════════════
+  4 US 2 C SECURITY — Shared Stylesheet (Light Theme)
+  ═══════════════════════════════════════════════════════════════════════════ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600;700&family=Barlow+Condensed:wght@400;600;700;800&display=swap');
+
+:root {
+  --brand:    #8b102e;
+  --brand-d:  #6a0c23;
+  --brand-l:  #b01a3c;
+  --brand-xl: #d42248;
+  --navy:     #183245;
+  --navy-l:   #1f4060;
+  --bg:       #f7f3f3;
+  --bg-2:     #efe9e9;
+  --bg-3:     #f0ebeb;
+  --white:    #ffffff;
+  --text:     #999696;
+  --muted:    #777777;
+  --border:   rgba(139,16,46,0.12);
+  --border-m: rgba(139,16,46,0.30);
+  /* legacy aliases so page-specific CSS still works */
+  --maroon:   #8b102e;
+  --maroon-d: #6a0c23;
+  --maroon-l: #b01a3c;
+  --maroon-xl:#d42248;
+  --azure:    #183245;
+  --azure-d:  #0f2030;
+  --azure-l:  #1f4060;
+  --azure-xl: #2a5580;
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Barlow',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden}
+img{max-width:100%;display:block}
+a{color:var(--brand);text-decoration:none}
+a:hover{color:var(--brand-l)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--brand);border-radius:2px}
+
+/* CURSOR */
+.cursor-dot{width:6px;height:6px;background:var(--brand);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9999;transform:translate(-50%,-50%)}
+.cursor-ring{width:30px;height:30px;border:1.5px solid rgba(139,16,46,0.4);border-radius:50%;position:fixed;top:0;left:0;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:transform .18s ease}
+
+/* NAV */
+nav{position:fixed;inset:0 0 auto 0;z-index:1000;height:72px;display:flex;align-items:center;justify-content:space-between;padding:0 60px;background:rgba(247,243,243,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);transition:background .3s;box-shadow:0 1px 20px rgba(139,16,46,0.08)}
+nav.scrolled{background:rgba(247,243,243,0.99);box-shadow:0 2px 30px rgba(139,16,46,0.12)}
+.nav-logo{display:flex;align-items:center;gap:12px}
+.nav-logo-img{height:44px;width:auto;object-fit:contain}
+.nav-wordmark{font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;color:var(--navy)}
+.nav-wordmark span{color:var(--brand)}
+.nav-links{display:flex;gap:32px;list-style:none;align-items:center}
+.nav-links a{font-size:11px;font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--muted);position:relative;transition:color .2s}
+.nav-links a::after{content:'';position:absolute;bottom:-4px;left:0;width:0;height:2px;background:var(--brand);transition:width .3s}
+.nav-links a:hover,.nav-links a.active{color:var(--brand)}
+.nav-links a:hover::after,.nav-links a.active::after{width:100%}
+.nav-cta{background:var(--brand)!important;border:none!important;color:#fff!important;padding:9px 20px;font-size:10px!important;font-weight:700!important;letter-spacing:2px;text-transform:uppercase;transition:background .2s,transform .2s!important;border-radius:2px}
+.nav-cta::after{display:none!important}
+.nav-cta:hover{background:var(--brand-d)!important;color:#fff!important;transform:translateY(-1px)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;z-index:10001}
+.hamburger span{width:24px;height:2px;background:var(--navy);transition:all .3s;display:block}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px)}
+.hamburger.open span:nth-child(2){opacity:0}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px)}
+#mobileNav{display:none;position:fixed;inset:0;z-index:10000;background:rgba(247,243,243,0.98);flex-direction:column;align-items:center;justify-content:center;gap:32px}
+#mobileNav.open{display:flex}
+#mobileNav a{font-family:'Bebas Neue';font-size:44px;letter-spacing:4px;color:var(--navy);transition:color .2s}
+#mobileNav a:hover{color:var(--brand)}
+
+/* PAGE HERO (inner pages) */
+.page-hero{min-height:44vh;display:flex;align-items:flex-end;padding:120px 60px 70px;position:relative;overflow:hidden;background:var(--navy)}
+.page-hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.04) 1px,transparent 1px);background-size:80px 80px}
+.page-hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 90% 80% at 20% 50%,rgba(24,50,69,0.4) 30%,var(--navy) 100%)}
+.page-hero-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,transparent,var(--brand),transparent)}
+.page-hero-content{position:relative}
+.page-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:18px}
+.page-eyebrow-line{width:40px;height:1px;background:var(--brand)}
+.page-eyebrow span{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--brand-l)}
+.page-title{font-family:'Bebas Neue';font-size:clamp(52px,6vw,96px);letter-spacing:2px;line-height:.95;color:#fff}
+.page-title .outline{-webkit-text-stroke:0;color:inherit}
+.page-sub{font-family:'Cormorant Garamond';font-size:20px;font-weight:300;font-style:italic;color:rgba(255,255,255,0.55);margin-top:18px;max-width:520px;line-height:1.6}
+.breadcrumb{display:flex;align-items:center;gap:10px;position:absolute;bottom:28px;right:60px}
+.breadcrumb a,.breadcrumb span{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase}
+.breadcrumb a{color:rgba(255,255,255,0.4);transition:color .2s}
+.breadcrumb a:hover{color:#fff}
+.breadcrumb .sep{color:var(--brand);font-size:8px}
+.breadcrumb span{color:rgba(255,255,255,0.6)}
+
+/* SECTION BASE */
+section{padding:100px 60px}
+.container{max-width:1280px;margin:0 auto}
+.section-label{display:flex;align-items:center;gap:16px;margin-bottom:16px}
+.section-label-line{width:36px;height:1px;background:var(--brand)}
+.section-label span{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--brand)}
+.section-title{font-family:'Bebas Neue';font-size:clamp(36px,4.5vw,64px);letter-spacing:2px;line-height:1;margin-bottom:12px;color:var(--navy)}
+.section-sub{font-family:'Cormorant Garamond';font-size:18px;font-weight:300;font-style:italic;color:var(--muted);line-height:1.6;max-width:500px}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:10px;font-family:'Barlow';font-size:11px;font-weight:700;letter-spacing:3px;text-transform:uppercase;cursor:pointer;border:none;transition:all .25s;position:relative;overflow:hidden;border-radius:2px}
+.btn-primary{background:var(--brand);border:1px solid var(--brand-d);color:#fff;padding:15px 34px}
+.btn-primary::before{content:'';position:absolute;inset:0;background:rgba(255,255,255,0.1);transform:translateX(-100%);transition:transform .3s}
+.btn-primary:hover::before{transform:translateX(0)}
+.btn-primary:hover{color:#fff;transform:translateY(-2px);box-shadow:0 12px 40px rgba(139,16,46,0.3)}
+.btn-outline{border:2px solid var(--brand);color:var(--brand);padding:15px 34px;background:transparent}
+.btn-outline:hover{background:var(--brand);color:#fff;transform:translateY(-2px)}
+.btn svg{flex-shrink:0}
+
+/* AOS */
+.aos{opacity:0;transform:translateY(28px);transition:opacity .65s ease,transform .65s ease}
+.aos-left{opacity:0;transform:translateX(-28px);transition:opacity .65s ease,transform .65s ease}
+.aos-right{opacity:0;transform:translateX(28px);transition:opacity .65s ease,transform .65s ease}
+.aos.visible,.aos-left.visible,.aos-right.visible{opacity:1;transform:none}
+
+/* CARDS */
+.card{background:#fff;border:1px solid var(--border);padding:40px 32px;position:relative;overflow:hidden;transition:border-color .3s,box-shadow .3s,transform .3s;box-shadow:0 2px 12px rgba(139,16,46,0.06)}
+.card:hover{border-color:var(--brand);box-shadow:0 8px 32px rgba(139,16,46,0.12);transform:translateY(-4px)}
+
+/* TAGS */
+.tag{display:inline-block;padding:4px 10px;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border-radius:2px}
+.tag-maroon{background:rgba(139,16,46,0.1);color:var(--brand);border:1px solid rgba(139,16,46,0.25)}
+.tag-azure{background:rgba(24,50,69,0.1);color:var(--navy);border:1px solid rgba(24,50,69,0.25)}
+.tag-white{background:rgba(0,0,0,0.05);color:var(--muted);border:1px solid rgba(0,0,0,0.1)}
+
+/* STAT GRID */
+.stat-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border)}
+.stat-cell{background:#fff;padding:40px 32px;border-bottom:3px solid transparent;transition:border-color .3s,box-shadow .3s}
+.stat-cell:hover{border-bottom-color:var(--brand);box-shadow:0 4px 20px rgba(139,16,46,0.08)}
+.stat-num{font-family:'Bebas Neue';font-size:56px;color:var(--brand);line-height:1}
+.stat-lbl{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-top:8px}
+
+/* MARQUEE */
+.marquee-wrap{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:18px 0;background:var(--bg-2)}
+.marquee-inner{display:flex;gap:56px;align-items:center;animation:marqueeScroll 24s linear infinite;width:max-content}
+@keyframes marqueeScroll{to{transform:translateX(-50%)}}
+.marquee-item{font-family:'Barlow Condensed';font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(139,16,46,0.35);white-space:nowrap;transition:color .2s}
+.marquee-item:hover{color:var(--brand)}
+.marquee-sep{color:var(--brand);font-size:8px;flex-shrink:0}
+
+/* SHIFT DIAGRAM */
+.shift-diagram{display:flex;align-items:center;gap:0;margin:24px 0 28px}
+.shift-box{padding:14px 18px;text-align:center;min-width:88px;flex-shrink:0}
+.shift-box.in{background:var(--navy);border:1px solid var(--navy-l)}
+.shift-box.out{background:var(--brand-d);border:1px solid var(--brand)}
+.shift-box.night-in{background:rgba(24,50,69,0.8);border:1px solid var(--navy-l)}
+.shift-box-lbl{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,0.5);margin-bottom:4px}
+.shift-box-time{font-family:'Bebas Neue';font-size:22px;color:#fff;letter-spacing:1px}
+.shift-arrow{flex:1;height:1px;background:var(--border);position:relative;display:flex;align-items:center;justify-content:center}
+.shift-arrow::after{content:'';position:absolute;right:0;width:0;height:0;border-left:8px solid var(--brand);border-top:5px solid transparent;border-bottom:5px solid transparent}
+.shift-arrow-lbl{position:absolute;top:-17px;font-size:9px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.shift-cycle{flex:1;display:flex;align-items:center;justify-content:center}
+.shift-cycle-ring{width:64px;height:64px;border:2px solid var(--border);border-top-color:var(--brand);border-radius:50%;display:flex;align-items:center;justify-content:center;animation:spin 6s linear infinite;position:relative}
+.shift-cycle-ring::after{content:'';position:absolute;width:46px;height:46px;border:1px solid var(--border);border-radius:50%}
+@keyframes spin{to{transform:rotate(360deg)}}
+.shift-cycle-text{position:absolute;font-family:'Bebas Neue';font-size:12px;letter-spacing:1px;color:var(--brand);text-align:center;line-height:1.2}
+
+/* ORG TREE */
+.org-tree{display:flex;flex-direction:column;align-items:center}
+.org-row{display:flex;justify-content:center;gap:12px;flex-wrap:wrap}
+.org-connector-v{width:1px;height:30px;background:linear-gradient(180deg,var(--brand),rgba(139,16,46,0.2));margin:0 auto}
+.org-node{padding:16px 22px;text-align:center;min-width:150px;transition:transform .2s;cursor:default;border-radius:2px}
+.org-node:hover{transform:translateY(-2px)}
+.org-node-role{font-size:8px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:5px}
+.org-node-name{font-size:13px;font-weight:600}
+.org-node.ceo{background:var(--brand);border:1px solid var(--brand-d);min-width:200px}
+.org-node.ceo .org-node-name{color:#fff}
+.org-node.ceo .org-node-role{color:rgba(255,255,255,0.65)}
+.org-node.gm{background:var(--navy);border:1px solid var(--navy-l)}
+.org-node.gm .org-node-name{color:#fff}
+.org-node.gm .org-node-role{color:rgba(255,255,255,0.55)}
+.org-node.mid{background:#fff;border:1px solid var(--border);box-shadow:0 2px 8px rgba(139,16,46,0.06)}
+.org-node.mid .org-node-name{color:var(--navy)}
+.org-node.mid .org-node-role{color:var(--brand)}
+.org-node.bot{background:var(--bg);border:1px solid var(--border)}
+.org-node.bot .org-node-name{color:var(--navy)}
+.org-node.bot .org-node-role{color:var(--muted)}
+
+/* COMPLIANCE */
+.comp-item{display:flex;align-items:center;gap:20px;padding:18px 22px;border:1px solid var(--border);background:#fff;transition:all .25s;margin-bottom:10px;box-shadow:0 1px 4px rgba(139,16,46,0.04)}
+.comp-item:hover{border-color:var(--brand);background:rgba(139,16,46,0.03);transform:translateX(4px);box-shadow:0 4px 16px rgba(139,16,46,0.08)}
+.comp-code{font-family:'Bebas Neue';font-size:18px;letter-spacing:2px;color:var(--brand);flex-shrink:0;width:90px}
+.comp-item p{font-size:13px;color:var(--text);line-height:1.5}
+
+/* LEGAL GRID */
+.legal-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border)}
+.legal-cell{background:#fff;padding:18px 22px;transition:background .2s}
+.legal-cell:hover{background:rgba(139,16,46,0.03)}
+.legal-cell-key{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--brand);margin-bottom:6px}
+.legal-cell-val{font-size:14px;color:var(--navy);font-weight:600}
+
+/* FORMS */
+.form-group{margin-bottom:18px}
+.form-group label{display:block;font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.form-group input,.form-group textarea,.form-group select{width:100%;background:#fff;border:1px solid #ddd;color:var(--text);font-family:'Barlow';font-size:14px;padding:13px 16px;outline:none;transition:border-color .2s,box-shadow .2s;appearance:none;border-radius:2px}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(139,16,46,0.08)}
+.form-group textarea{min-height:110px;resize:vertical}
+.form-group select option{background:#fff;color:var(--text)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+
+/* TABS */
+.tabs-bar{display:flex;border-bottom:2px solid var(--border);margin-bottom:48px;gap:0}
+[data-tab]{padding:14px 26px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:all .2s}
+[data-tab]:hover{color:var(--brand)}
+[data-tab].active{color:var(--brand);border-bottom-color:var(--brand)}
+[data-panel]{display:none}
+[data-panel].active{display:block}
+
+/* CLIENT TABLE */
+.ct-wrap{border:1px solid var(--border);overflow:hidden;border-radius:4px;box-shadow:0 2px 12px rgba(139,16,46,0.06)}
+.ct-head{display:grid;grid-template-columns:2.5fr 2fr 1.5fr;background:var(--brand);border-bottom:1px solid var(--brand-d)}
+.ct-head span{padding:13px 22px;font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:#fff}
+.ct-row{display:grid;grid-template-columns:2.5fr 2fr 1.5fr;border-bottom:1px solid var(--border);transition:background .2s}
+.ct-row:last-child{border-bottom:none}
+.ct-row:hover{background:rgba(139,16,46,0.04)}
+.ct-row:nth-child(even){background:rgba(0,0,0,0.02)}
+.ct-cell{padding:17px 22px;font-size:13px;color:var(--text);display:flex;align-items:center;gap:12px}
+.ct-cell strong{color:var(--navy);font-weight:600}
+.ct-dot{width:5px;height:5px;border-radius:50%;background:var(--brand);flex-shrink:0}
+
+/* FOOTER */
+footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60px 32px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:56px;padding-bottom:48px;border-bottom:1px solid rgba(255,255,255,0.08);margin-bottom:32px}
+.footer-brand p{font-size:13px;color:rgba(255,255,255,0.5);line-height:1.8;margin-top:16px;max-width:280px}
+.footer-logo-img{height:48px;width:auto;object-fit:contain;margin-bottom:4px}
+.footer-col h5{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:rgba(255,255,255,0.35);margin-bottom:20px}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-col ul li a{font-size:13px;color:rgba(255,255,255,0.5);transition:color .2s,padding-left .2s;display:block}
+.footer-col ul li a:hover{color:#fff;padding-left:4px}
+.footer-bottom{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px}
+.footer-bottom p{font-size:11px;color:rgba(255,255,255,0.3)}
+.footer-regs{display:flex;gap:24px;flex-wrap:wrap}
+.footer-regs span{font-size:10px;font-weight:600;letter-spacing:1px;color:rgba(255,255,255,0.3)}
+.footer-regs span strong{color:rgba(255,255,255,0.6)}
+
+/* ACCORDION */
+.accordion-item{border-bottom:1px solid var(--border)}
+.accordion-trigger{width:100%;display:flex;align-items:center;justify-content:space-between;padding:22px 0;cursor:pointer;background:none;border:none;color:var(--navy);font-family:'Barlow';font-size:15px;font-weight:600;text-align:left;transition:color .2s}
+.accordion-trigger:hover{color:var(--brand)}
+.accordion-icon{width:20px;height:20px;position:relative;flex-shrink:0}
+.accordion-icon::before,.accordion-icon::after{content:'';position:absolute;background:currentColor;transition:transform .3s,opacity .3s}
+.accordion-icon::before{width:14px;height:1px;top:50%;left:3px}
+.accordion-icon::after{width:1px;height:14px;top:3px;left:50%;transform:translateX(-50%)}
+.accordion-item.open .accordion-icon::after{transform:translateX(-50%) rotate(90deg);opacity:0}
+.accordion-body{max-height:0;overflow:hidden;transition:max-height .4s ease}
+.accordion-item.open .accordion-body{max-height:600px}
+.accordion-body-inner{padding:0 0 24px;font-size:14px;line-height:1.8;color:var(--text)}
+
+/* RESPONSIVE */
+@media(max-width:1100px){
+  nav{padding:0 28px}
+  .nav-links{display:none}
+  .hamburger{display:flex}
+  section{padding:72px 28px}
+  .page-hero{padding:110px 28px 60px}
+  .breadcrumb{right:28px;bottom:16px}
+  footer{padding:48px 28px 24px}
+  .footer-top{grid-template-columns:1fr 1fr;gap:40px}
+  .stat-grid{grid-template-columns:1fr 1fr}
+  .ct-head,.ct-row{grid-template-columns:1.8fr 2fr}
+  .ct-head span:last-child,.ct-cell:last-child{display:none}
+}
+@media(max-width:680px){
+  section{padding:56px 20px}
+  .page-hero{padding:100px 20px 48px}
+  .footer-top{grid-template-columns:1fr;gap:32px}
+  .form-row{grid-template-columns:1fr}
+  .stat-grid{grid-template-columns:1fr}
+  footer{padding:40px 20px 20px}
+}
+
+</style>
+<style>
+/* ── INDEX ONLY ── */
+#hero{min-height:100vh;display:flex;align-items:center;padding:0 60px;position:relative;overflow:hidden;background:var(--navy)}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(123,28,39,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(123,28,39,.07) 1px,transparent 1px);background-size:80px 80px;animation:gridDrift 20s linear infinite}
+@keyframes gridDrift{to{background-position:80px 80px}}
+.hero-vignette{position:absolute;inset:0;background:radial-gradient(ellipse 80% 80% at 50% 50%,transparent 30%,var(--navy) 100%)}
+.hero-accent{position:absolute;left:0;top:0;bottom:0;width:5px;background:linear-gradient(180deg,transparent,var(--maroon),transparent)}
+.hero-content{position:relative;max-width:860px}
+.hero-eyebrow{display:flex;align-items:center;gap:16px;margin-bottom:28px}
+.hero-eyebrow-line{width:60px;height:1px;background:rgba(255,255,255,0.5)}
+.hero-eyebrow-text{font-size:10px;font-weight:700;letter-spacing:4px;text-transform:uppercase;color:var(--brand)}
+.hero-h1{font-family:'Bebas Neue';font-size:clamp(64px,8.5vw,130px);line-height:.9;letter-spacing:2px;margin-bottom:28px}
+.hero-h1 .fill{color:var(--white);display:block}
+.hero-h1 .outline{color:var(--white);display:block}
+.hero-h1 .accent{color:var(--white);display:block}
+.hero-sub{font-family:'Cormorant Garamond';font-size:22px;font-weight:300;font-style:italic;color:var(--white);line-height:1.6;max-width:520px;margin-bottom:48px}
+.hero-actions{display:flex;gap:18px;flex-wrap:wrap}
+.hero-scroll{position:absolute;bottom:38px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px}
+.hero-scroll-txt{font-size:9px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--white)}
+.hero-scroll-bar{width:1px;height:48px;background:linear-gradient(180deg,var(--maroon),transparent);animation:scrollPulse 2s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.4;transform:scaleY(.5)}}
+.hero-stats{position:absolute;right:60px;bottom:80px;display:flex;flex-direction:column;gap:28px;text-align:right}
+.hero-stat-num{font-family:'Bebas Neue';font-size:52px;color:var(--brand);line-height:1}
+.hero-stat-lbl{font-size:9px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--white)}
+
+/* Intro strip */
+.intro-strip{background:#fff;padding:72px 60px;border-top:1px solid var(--border)}
+.intro-inner{max-width:1280px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.intro-text p{font-size:16px;line-height:1.9;color:var(--text);margin-bottom:18px}
+.intro-text p strong{color:var(--navy)}
+.intro-right{display:flex;flex-direction:column;gap:20px}
+.vm-card{border:1px solid var(--border);padding:32px 36px;position:relative;overflow:hidden;background:#fff;transition:border-color .3s,transform .3s}
+.vm-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%}
+.vm-card.vision::before{background:var(--maroon)}
+.vm-card.mission::before{background:var(--azure-l)}
+.vm-card:hover{border-color:var(--brand);transform:translateX(4px);box-shadow:0 4px 20px rgba(139,16,46,0.12)}
+.vm-lbl{font-size:9px;font-weight:700;letter-spacing:4px;text-transform:uppercase;margin-bottom:10px}
+.vm-card.vision .vm-lbl{color:var(--brand)}
+.vm-card.mission .vm-lbl{color:#5E8FC7}
+.vm-card h3{font-family:'Barlow Condensed';font-size:18px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:10px}
+.vm-card p{font-size:13px;line-height:1.8;color:var(--muted)}
+
+/* Services preview */
+.services-preview{background:var(--bg-2)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px}
+.svc-card{background:#fff;border:1px solid var(--border);padding:40px 32px;position:relative;overflow:hidden;transition:all .35s}
+.svc-card::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(123,28,39,.08),transparent);opacity:0;transition:opacity .35s}
+.svc-card:hover{border-color:rgba(139,16,46,0.3);background:rgba(139,16,46,0.03);transform:translateY(-4px)}
+.svc-card:hover::after{opacity:1}
+.svc-card.featured{background:var(--maroon);border-color:var(--brand)}
+.svc-card.featured::after{display:none}
+.svc-card.featured:hover{background:var(--maroon-l);transform:translateY(-4px)}
+.svc-icon{font-size:24px;margin-bottom:24px;position:relative;z-index:1;width:52px;height:52px;display:flex;align-items:center;justify-content:center;background:rgba(139,16,46,0.07);border-radius:8px}
+.svc-card.featured .svc-icon{color:#fff;background:rgba(255,255,255,0.14)}
+.svc-num{position:absolute;top:24px;right:24px;font-family:'Bebas Neue';font-size:60px;color:rgba(255,255,255,.04);line-height:1;user-select:none}
+.svc-card:hover .svc-num{color:rgba(123,28,39,.12)}
+.svc-card.featured .svc-num{color:rgba(255,255,255,.07)}
+.svc-card h3{font-family:'Barlow Condensed';font-size:19px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:12px;position:relative;z-index:1}
+.svc-card p{font-size:13px;line-height:1.8;color:var(--muted);position:relative;z-index:1}
+.svc-card.featured p{color:rgba(255,255,255,.75)}
+
+/* CTA band */
+.cta-band{background:var(--brand-d);border-top:1px solid rgba(123,28,39,.5);border-bottom:1px solid rgba(123,28,39,.5);padding:56px 60px}
+.cta-inner{max-width:1280px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+.cta-inner h2{font-family:'Bebas Neue';font-size:clamp(32px,3.5vw,52px);letter-spacing:2px;color:var(--white)}
+.cta-inner p{font-family:'Cormorant Garamond';font-size:18px;font-style:italic;color:var(--white);margin-top:8px}
+.cta-actions{display:flex;gap:16px;flex-shrink:0;flex-wrap:wrap}
+
+/* Markets */
+.markets{background:var(--bg)}
+.mkt-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:56px}
+.mkt-card{background:#fff;border:1px solid var(--border);padding:36px 28px;position:relative;overflow:hidden;transition:all .3s}
+.mkt-card::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--maroon);transform:scaleX(0);transition:transform .3s}
+.mkt-card:hover{border-color:rgba(123,28,39,.35);background:rgba(139,16,46,0.03);transform:translateY(-3px)}
+.mkt-card:hover::before{transform:scaleX(1)}
+.mkt-icon{font-size:26px;margin-bottom:18px}
+.mkt-card h4{font-family:'Barlow Condensed';font-size:17px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:8px}
+.mkt-card p{font-size:13px;color:var(--muted);line-height:1.7}
+
+/* Fade in hero */
+.hero-content>*{opacity:0;animation:fadeUp .7s forwards}
+.hero-content>*:nth-child(1){animation-delay:.1s}
+.hero-content>*:nth-child(2){animation-delay:.25s}
+.hero-content>*:nth-child(3){animation-delay:.4s}
+.hero-content>*:nth-child(4){animation-delay:.55s}
+.hero-stats{opacity:0;animation:fadeUp .8s .6s forwards}
+.hero-scroll{opacity:0;animation:fadeUp .8s 1s forwards}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+
+@media(max-width:1100px){#hero{padding:80px 28px;}.hero-stats{display:none}.intro-inner{grid-template-columns:1fr}.svc-grid,.mkt-grid{grid-template-columns:1fr 1fr}.cta-band{padding:48px 28px}}
+@media(max-width:680px){#hero{padding:80px 20px 60px}.svc-grid,.mkt-grid{grid-template-columns:1fr}.intro-strip{padding:56px 20px}}
+</style>
+</head>
+<body>
+<div class="cursor-dot"></div><div class="cursor-ring"></div>
+<div id="mobileNav">
+  <a href="index.html">Home</a><a href="about.html">About</a><a href="services.html">Services</a>
+  <a href="packages.html">Packages</a><a href="clients.html">Clients</a>
+  <a href="compliance.html">Compliance</a><a href="contact.html">Contact</a>
+</div>
+<nav id="navbar">
+  <a href="index.html" class="nav-logo">
+    <img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png" alt="4 US 2 C Security Logo" class="nav-logo-img"/>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html" class="active">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li><a href="services.html">Services</a></li>
+    <li><a href="packages.html">Packages</a></li>
+    <li><a href="clients.html">Clients</a></li>
+    <li><a href="compliance.html">Compliance</a></li>
+    <li><a href="contact.html" class="nav-cta">Get a Quote</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-img" style="position:absolute;inset:0;background:url('https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628706/4us2cteam1_x6ezwt.png') center center/cover no-repeat;"></div>
+  <div class="hero-overlay" style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(24,50,69,0.88) 0%,rgba(24,50,69,0.65) 50%,rgba(24,50,69,0.3) 100%);"></div>
+  
+  <div class="hero-accent"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-eyebrow">
+        <div class="hero-eyebrow-line"></div>
+        <span class="hero-eyebrow-text">Est. 2016 · Midrand, Johannesburg · PSIRA Registered</span>
+      </div>
+      <h1 class="hero-h1">
+        <span class="fill">Protecting</span>
+        <span class="outline">What</span>
+        <span class="accent">Matters.</span>
+      </h1>
+      <p class="hero-sub">Innovative security solutions across South Africa and the African continent — delivered with professionalism, technology, and trust.</p>
+      <div class="hero-actions">
+        <a href="services.html" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Our Services</a>
+        <a href="contact.html" class="btn btn-outline">Get a Quote</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="hero-stat-num" data-count="8" data-suffix="+">8+</div><div class="hero-stat-lbl">Years Experience</div></div>
+    <div><div class="hero-stat-num" data-count="45">45</div><div class="hero-stat-lbl">Security Officers</div></div>
+    <div><div class="hero-stat-num">24/7</div><div class="hero-stat-lbl">Operations</div></div>
+  </div>
+  <div class="hero-scroll"><span class="hero-scroll-txt">Scroll</span><div class="hero-scroll-bar"></div></div>
+</section>
+
+<!-- STATS BAR -->
+<div class="stat-grid">
+  <div class="stat-cell aos"><div class="stat-num" data-count="8" data-suffix="+">8+</div><div class="stat-lbl">Years of Experience</div></div>
+  <div class="stat-cell aos"><div class="stat-num" data-count="45">45</div><div class="stat-lbl">Security Officers</div></div>
+  <div class="stat-cell aos"><div class="stat-num" data-count="9">9</div><div class="stat-lbl">Active Clients</div></div>
+  <div class="stat-cell aos"><div class="stat-num">24/7</div><div class="stat-lbl">Around-the-Clock Ops</div></div>
+</div>
+
+<!-- INTRO -->
+<div class="intro-strip">
+  <div class="intro-inner">
+    <div class="intro-text aos-left">
+      <div class="section-label" style="margin-bottom:20px"><div class="section-label-line"></div><span>Who We Are</span></div>
+      <h2 class="section-title">South African Security<br>Excellence</h2>
+      <p style="margin-top:20px"><strong>4 US 2 C Security (Pty) Ltd</strong> is a proudly South African private security company established in 2016, headquartered at Constantia Business Park, Midrand. We deliver comprehensive, individualized security solutions across South Africa and the African continent.</p>
+      <p>Founded by an industry veteran with over 8 years of experience, we take a multi-disciplinary approach — collaborating with SAPS, JMPD, Environmental Health Board, and PSIRA to deliver security that is innovative, effective, and fully compliant.</p>
+      <a href="about.html" class="btn btn-primary" style="margin-top:32px"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Learn More About Us</a>
+    </div>
+    <div class="aos-right">
+      <div class="vm-card vision" style="margin-bottom:20px">
+        <div class="vm-lbl">Vision</div>
+        <h3>Leading Security Innovation in Africa</h3>
+        <p>To become the leading innovative security solutions provider in South Africa and the African continent — delivering world-class safety and protection services for all.</p>
+      </div>
+      <div class="vm-card mission">
+        <div class="vm-lbl">Mission</div>
+        <h3>Affordable Quality, Lasting Relationships</h3>
+        <p>To reach clients through affordable, quality security services — upholding a customer-oriented policy committed to excellence, professionalism, and staff development.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES PREVIEW -->
+<section class="services-preview">
+  <div class="container">
+    <div style="display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:0;flex-wrap:wrap;gap:24px">
+      <div>
+        <div class="section-label aos"><div class="section-label-line"></div><span>What We Offer</span></div>
+        <h2 class="section-title aos">Our Core Services</h2>
+      </div>
+      <a href="services.html" class="btn btn-outline aos">View All Services <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a>
+    </div>
+    <div class="svc-grid">
+      <div class="svc-card aos"><div class="svc-num">01</div><div class="svc-icon"><i class="fa-solid fa-shield-halved" aria-hidden="true"></i></div><h3>24/7 Unarmed Physical Guarding</h3><p>Continuous access control, observation and reporting by trained officers around the clock.</p></div>
+      <div class="svc-card featured aos"><div class="svc-num">02</div><div class="svc-icon"><i class="fa-solid fa-gun" aria-hidden="true"></i></div><h3>Armed 24/7 Guarding</h3><p>Round-the-clock armed protection for high-risk sites and critical assets requiring maximum deterrence.</p></div>
+      <div class="svc-card aos"><div class="svc-num">03</div><div class="svc-icon"><i class="fa-solid fa-truck-fast" aria-hidden="true"></i></div><h3>Armed Tactical Response</h3><p>Rapid reaction teams deployed immediately to alarm activations with trained tactical officers.</p></div>
+      <div class="svc-card aos"><div class="svc-num">04</div><div class="svc-icon"><i class="fa-solid fa-user-shield" aria-hidden="true"></i></div><h3>Close Protection</h3><p>CPO-level bodyguarding for executives, high-profile individuals and VIPs.</p></div>
+      <div class="svc-card aos"><div class="svc-num">05</div><div class="svc-icon"><i class="fa-solid fa-bell" aria-hidden="true"></i></div><h3>Alarm Installation &amp; Response</h3><p>Integrated systems from R389/mo residential, R499/mo commercial, with 24/7 armed response.</p></div>
+      <div class="svc-card aos"><div class="svc-num">06</div><div class="svc-icon"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i></div><h3>Security Training Academy</h3><p>Industry-focused training producing certified, competent security professionals.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <div class="cta-inner">
+    <div class="aos">
+      <h2>Ready to secure your premises?</h2>
+      <p>Get a customised quote within 24 hours</p>
+    </div>
+    <div class="cta-actions aos">
+      <a href="contact.html" class="btn btn-primary"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M12 5l7 7-7 7"/></svg>Request a Quote</a>
+      <a href="packages.html" class="btn btn-outline">View Packages</a>
+    </div>
+  </div>
+</div>
+
+<!-- MARKETS -->
+<section class="markets">
+  <div class="container">
+    <div class="section-label aos"><div class="section-label-line"></div><span>Who We Serve</span></div>
+    <h2 class="section-title aos">Markets &amp; Environments</h2>
+    <p class="section-sub aos" style="margin-top:8px">We service a large pool of clients across South Africa — from Gauteng to the Western Cape.</p>
+    <div class="mkt-grid">
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-landmark" aria-hidden="true"></i></div><h4>Government Departments</h4><p>Armed tactical response and physical security for government buildings and public infrastructure.</p></div>
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-cart-shopping" aria-hidden="true"></i></div><h4>Shopping Centres &amp; Retail</h4><p>Day and double-shift guarding packages for retail stores and FMCG operations.</p></div>
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-industry" aria-hidden="true"></i></div><h4>Commercial &amp; Industrial</h4><p>Comprehensive solutions for factories, warehouses, construction sites and commercial properties.</p></div>
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-house" aria-hidden="true"></i></div><h4>Estates &amp; Residential</h4><p>Tailored shift packages for residential estates, townhouses and private residences.</p></div>
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-hospital" aria-hidden="true"></i></div><h4>Hospitals, Schools &amp; Universities</h4><p>Sensitive-environment security for healthcare, educational and institutional facilities.</p></div>
+      <div class="mkt-card aos"><div class="mkt-icon"><i class="fa-solid fa-anchor" aria-hidden="true"></i></div><h4>Aquatic &amp; Specialist</h4><p>Specialist security including Cape Town harbour operations and marine environments.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-inner">
+    <span class="marquee-item">PSIRA Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">BBBEE Compliant</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">COIDA Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">UIF Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">VAT Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">NBCPSS Compliant</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Established 2016</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Midrand · Johannesburg</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">PSIRA Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">BBBEE Compliant</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">COIDA Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">UIF Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">VAT Registered</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">NBCPSS Compliant</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Established 2016</span><span class="marquee-sep">◆</span>
+    <span class="marquee-item">Midrand · Johannesburg</span><span class="marquee-sep">◆</span>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px">
+          <img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png" alt="4 US 2 C Security" class="footer-logo-img"/>
+        </div><p>Protecting what matters most since 2016. South African security excellence across every environment.</p></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Unarmed Guarding</a></li><li><a href="services.html">Armed Guarding</a></li><li><a href="services.html">Armed Response</a></li><li><a href="services.html">Close Protection</a></li><li><a href="services.html">CCTV &amp; Alarms</a></li><li><a href="services.html">Training Academy</a></li></ul></div>
+      <div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="packages.html">Packages</a></li><li><a href="clients.html">Clients</a></li><li><a href="compliance.html">Compliance</a></li><li><a href="contact.html">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Location</h5><ul><li><a href="#">546 16th Road, Randjespark</a></li><li><a href="#">Midrand, 1685, Gauteng</a></li><li><a href="#">PSIRA: 2595891</a></li><li><a href="#">Reg: 2016/004422/07</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2026 4 US 2 C Security (Pty) Ltd. All rights reserved.</p><div class="footer-regs"><span><strong>PSIRA</strong> 2595891</span><span><strong>VAT</strong> 4270301924</span><span><strong>BBBEE</strong> Compliant</span><span><strong>COIDA</strong> 990001124059</span></div></div>
+  </div>
+</footer>
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   4 US 2 C SECURITY — Shared JavaScript
+   ═══════════════════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', () => {
+
+  /* ── Custom Cursor ───────────────────────────────────────── */
+  const dot  = document.querySelector('.cursor-dot');
+  const ring = document.querySelector('.cursor-ring');
+  if (dot && ring) {
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+      mx = e.clientX; my = e.clientY;
+      dot.style.left = mx + 'px'; dot.style.top = my + 'px';
+    });
+    const animC = () => {
+      rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+      ring.style.left = rx + 'px'; ring.style.top = ry + 'px';
+      requestAnimationFrame(animC);
+    };
+    animC();
+    document.querySelectorAll('a,button,[data-tab],.card,.svc-card,.sf-card,.mkt-card,.mkt-item,.ref-card,.pkg-card,.tac-card,.goal-card,.pillar,.vm-card,.comp-item,.legal-cell').forEach(el => {
+      el.addEventListener('mouseenter', () => ring.style.transform = 'translate(-50%,-50%) scale(1.6)');
+      el.addEventListener('mouseleave', () => ring.style.transform = 'translate(-50%,-50%) scale(1)');
+    });
+  }
+
+  /* ── Navbar scroll ───────────────────────────────────────── */
+  const navbar = document.querySelector('nav');
+  if (navbar) {
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 30);
+    }, { passive: true });
+  }
+
+  /* ── Active nav link ─────────────────────────────────────── */
+  const page = window.location.pathname.split('/').pop() || 'index.html';
+  document.querySelectorAll('.nav-links a').forEach(a => {
+    const href = a.getAttribute('href');
+    if (a.classList.contains('nav-cta')) return;
+    if (href === page || (page === '' && href === 'index.html')) {
+      a.classList.add('active');
+    }
+  });
+
+  /* ── Hamburger / Mobile nav ──────────────────────────────── */
+  const ham = document.getElementById('hamburger');
+  const mobileNav = document.getElementById('mobileNav');
+  if (ham && mobileNav) {
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      mobileNav.classList.toggle('open');
+      document.body.style.overflow = mobileNav.classList.contains('open') ? 'hidden' : '';
+    });
+    mobileNav.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        ham.classList.remove('open');
+        mobileNav.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+  }
+
+  /* ── Scroll-triggered animations ────────────────────────── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08 });
+
+  document.querySelectorAll('.aos, .aos-left, .aos-right').forEach(el => {
+    const siblings = Array.from(el.parentElement.children).filter(c =>
+      c.classList.contains('aos') || c.classList.contains('aos-left') || c.classList.contains('aos-right')
+    );
+    const idx = siblings.indexOf(el);
+    if (!el.style.transitionDelay) {
+      el.style.transitionDelay = (idx * 0.07) + 's';
+    }
+    observer.observe(el);
+  });
+
+  /* ── Counter animation ───────────────────────────────────── */
+  document.querySelectorAll('[data-count]').forEach(el => {
+    const target = parseInt(el.dataset.count);
+    const suffix = el.dataset.suffix || '';
+    const cObs = new IntersectionObserver(entries => {
+      if (entries[0].isIntersecting) {
+        let count = 0;
+        const step = Math.max(1, target / 50);
+        const timer = setInterval(() => {
+          count += step;
+          if (count >= target) { count = target; clearInterval(timer); }
+          el.textContent = Math.floor(count) + suffix;
+        }, 28);
+        cObs.unobserve(el);
+      }
+    }, { threshold: 0.5 });
+    cObs.observe(el);
+  });
+
+  /* ── Tab switcher ────────────────────────────────────────── */
+  document.querySelectorAll('[data-tabs]').forEach(container => {
+    const tabs = container.querySelectorAll('[data-tab]');
+    // Activate first by default
+    if (tabs.length > 0 && !container.querySelector('[data-tab].active')) {
+      tabs[0].classList.add('active');
+      const firstPanel = document.getElementById('panel-' + tabs[0].dataset.tab);
+      if (firstPanel) firstPanel.classList.add('active');
+    }
+    tabs.forEach(tab => {
+      tab.addEventListener('click', () => {
+        const group = tab.dataset.group;
+        // Deactivate tabs in same group
+        container.querySelectorAll('[data-tab]').forEach(t => {
+          if (!group || t.dataset.group === group) t.classList.remove('active');
+        });
+        // Deactivate panels in same group
+        document.querySelectorAll('[data-panel]').forEach(p => {
+          if (!group || p.dataset.group === group) p.classList.remove('active');
+        });
+        tab.classList.add('active');
+        const panel = document.getElementById('panel-' + tab.dataset.tab);
+        if (panel) {
+          panel.classList.add('active');
+          // Re-animate AOS items in newly shown panel
+          panel.querySelectorAll('.aos, .aos-left, .aos-right').forEach((el, i) => {
+            el.classList.remove('visible');
+            el.style.transitionDelay = (i * 0.07) + 's';
+            setTimeout(() => el.classList.add('visible'), 20);
+          });
+        }
+      });
+    });
+  });
+
+  /* ── Accordion ───────────────────────────────────────────── */
+  document.querySelectorAll('.accordion-trigger').forEach(trigger => {
+    trigger.addEventListener('click', () => {
+      const item = trigger.closest('.accordion-item');
+      const isOpen = item.classList.contains('open');
+      document.querySelectorAll('.accordion-item').forEach(i => i.classList.remove('open'));
+      if (!isOpen) item.classList.add('open');
+    });
+  });
+
+});
+
+</script>
+</body>
+</html>
