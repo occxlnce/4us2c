@@ -288,8 +288,10 @@ footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60p
 .client-table-wrap{margin-top:64px}
 .site-refs{background:#fff;padding:80px 60px;border-top:1px solid var(--border)}
 .ref-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
-.ref-card{background:#fff;border:1px solid var(--border);padding:28px 24px;transition:all .3s}
+.ref-card{background:#fff;border:1px solid var(--border);padding:0;transition:all .3s;position:relative;overflow:hidden}
 .ref-card:hover{border-color:rgba(139,16,46,0.3);background:rgba(139,16,46,0.03);transform:translateY(-3px)}
+.ref-img{width:100%;height:160px;object-fit:cover;display:block}
+.ref-content{padding:24px 20px}
 .ref-card h4{font-family:'Barlow Condensed';font-size:17px;font-weight:700;letter-spacing:1px;color:var(--navy);margin-bottom:6px}
 .ref-card p{font-size:12px;color:var(--muted);letter-spacing:1px;text-transform:uppercase;font-weight:600}
 .markets-section{background:var(--bg-2);padding:80px 60px}
@@ -357,12 +359,12 @@ footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60p
     <h2 class="section-title aos">Active Site References</h2>
     <p class="section-sub aos" style="margin-top:8px">Verified security deployments across Gauteng and surrounding regions.</p>
     <div class="ref-grid">
-      <div class="ref-card aos"><h4>Sanrose Autobody</h4><p>Commercial &amp; Industrial</p></div>
-      <div class="ref-card aos"><h4>Indigo Garden Centre</h4><p>Retail &amp; Commercial</p></div>
-      <div class="ref-card aos"><h4>Cescos Pub &amp; Restaurant</h4><p>Hospitality</p></div>
-      <div class="ref-card aos"><h4>Manhattan Construction Projects</h4><p>Construction &amp; Industrial</p></div>
-      <div class="ref-card aos"><h4>SPAR — Noordwyk Branch</h4><p>FMCG Retail</p></div>
-      <div class="ref-card aos"><h4>Tops at SPAR</h4><p>FMCG Retail</p></div>
+      <div class="ref-card aos"><img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1775558831/Modern_auto_body_shop_facade_aswzx2.png" alt="Sanrose Autobody" class="ref-img"/><div class="ref-content"><h4>Sanrose Autobody</h4><p>Commercial &amp; Industrial</p></div></div>
+      <div class="ref-card aos"><img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1775558834/Greenhouse_garden_centre_with_hanging_baskets_xr2k83.png" alt="Indigo Garden Centre" class="ref-img"/><div class="ref-content"><h4>Indigo Garden Centre</h4><p>Retail &amp; Commercial</p></div></div>
+      <div class="ref-card aos"><img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1775558822/Rumours_Lounge_and_Cesco_s_at_midday_pjyvg9.png" alt="Cescos Pub & Restaurant" class="ref-img"/><div class="ref-content"><h4>Cescos Pub &amp; Restaurant</h4><p>Hospitality</p></div></div>
+      <div class="ref-card aos"><img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1775558831/Modern_office_complex_with_vibrant_landscaping_gckp7h.png" alt="Manhattan Construction Projects" class="ref-img"/><div class="ref-content"><h4>Manhattan Construction Projects</h4><p>Construction &amp; Industrial</p></div></div>
+      <div class="ref-card aos"><img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1775558825/SPAR_supermarket_with_vehicles_and_flags_zmfyim.png" alt="SPAR Noordwyk Branch" class="ref-img"/><div class="ref-content"><h4>SPAR — Noordwyk Branch</h4><p>FMCG Retail</p></div></div>
+      <div class="ref-card aos"><img src="https://www.moneyweb.co.za/wp-content/uploads/2014/10/Spar.jpg" alt="Tops at SPAR" class="ref-img"/><div class="ref-content"><h4>Tops at SPAR</h4><p>FMCG Retail</p></div></div>
     </div>
   </div>
 </div>
@@ -409,7 +411,7 @@ footer{background:var(--navy);border-top:3px solid var(--brand);padding:64px 60p
 
 <footer><div class="container"><div class="footer-top"><div class="footer-brand"><div class="nav-logo" style="margin-bottom:4px">
           <img src="https://res.cloudinary.com/dgwtaivvf/image/upload/v1772628556/4us2c_logo_kqqs4o.png" alt="4 US 2 C Security" class="footer-logo-img"/>
-        </div><p>Protecting what matters most since 2016. South African security excellence across every environment.</p></div><div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Armed Guarding</a></li><li><a href="services.html">Armed Response</a></li><li><a href="services.html">Close Protection</a></li><li><a href="services.html">CCTV</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="packages.html">Packages</a></li><li><a href="compliance.html">Compliance</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="footer-col"><h5>Location</h5><ul><li><a href="#">Midrand, 1685, Gauteng</a></li><li><a href="#">PSIRA: 2595891</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 4 US 2 C Security (Pty) Ltd. All rights reserved.</p><div class="footer-regs"><span><strong>PSIRA</strong> 2595891</span><span><strong>BBBEE</strong> Compliant</span></div></div></div></footer>
+        </div><p>Protecting what matters most since 2016. South African security excellence across every environment.</p></div><div class="footer-col"><h5>Services</h5><ul><li><a href="services.html">Armed Guarding</a></li><li><a href="services.html">Armed Response</a></li><li><a href="services.html">Close Protection</a></li><li><a href="services.html">CCTV</a></li></ul></div><div class="footer-col"><h5>Company</h5><ul><li><a href="about.html">About Us</a></li><li><a href="packages.html">Packages</a></li><li><a href="compliance.html">Compliance</a></li><li><a href="contact.html">Contact</a></li></ul></div><div class="footer-col"><h5>Location</h5><ul><li><a href="#">Midrand, 1685, Gauteng</a></li><li><a href="#">PSIRA: 2595891</a></li></ul></div></div><div class="footer-bottom"><p>© 2026 4 US 2 C Security (Pty) Ltd. All rights reserved. Dev by <a href="https://www.occxlnce.co.za" target="_blank" style="color:rgba(255,255,255,0.5);text-decoration:none;transition:color .2s" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='rgba(255,255,255,0.5)'">Occxlnce</a></p><div class="footer-regs"><span><strong>PSIRA</strong> 2595891</span><span><strong>BBBEE</strong> Compliant</span></div></div></div></footer>
 <script>
 /* ═══════════════════════════════════════════════════════════════════
   4 US 2 C SECURITY — Shared JavaScript
